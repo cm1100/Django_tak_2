@@ -67,9 +67,12 @@ class ArticlesView2(View,LoginRequiredMixin):
 
     def get(self, request):
         username = request.GET.get("searched")
-        objects = User.objects.filter(username=username)
-
-        objects = Blog.objects.filter(owner=objects[0].id,public=True)
+        objects1 = User.objects.filter(username=username)
+        objects=None
+        try:
+            objects = Blog.objects.filter(owner=objects1[0].id,public=True)
+        except:
+            objects=None
 
         ctx = {"objects": objects}
         return render(request, "blogs/done.html", ctx)

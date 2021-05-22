@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% if user.is_authenticated %}
+<h2> Search for articles by username</h2>
+
+<form method="GET" action="{% url 'blogs:list_article' %}">
+
+    <input type="text" name="searched">
+    <input type="submit" value="submit">
+</form>
+<a href="{% url 'blogs:list_articles' user.id %}">See your articles</a>
+{% else %}
+<a href="{% url 'login' %}">Login to search articles</a>
+{% endif %}
+<br>
+
+
+</body>
+</html>

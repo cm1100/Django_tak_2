@@ -1,0 +1,13 @@
+
+{% load crispy_forms_tags %}
+
+
+<form method="post" action="">
+    {% csrf_token %}
+
+    {{form|crispy}}
+
+    <input type="submit" class="btn btn-success" value="Signup">
+    <input type="submit" value="Cancel" onclick="window.location='{% url 'login' %}' ; return false;" class="btn btn-primary">
+</form>
+

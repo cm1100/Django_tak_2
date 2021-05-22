@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Welcome Page</h1>
+
+<br><br>
+
+{% if user.is_authenticated %}
+
+{% if objects %}
+
+{% for object in objects %}
+<h2>{{object.title}}</h2>
+<br> <br>
+{{object.description}}<br><br>
+<img style="width:90%;margin-top: 50px; border:3px solid black;" src="{% url 'blogs:pic_picture' object.id %}">
+<br><br>
+<hr size="8" width="100%" color="black">
+
+
+
+{% endfor %}
+
+{% else %}
+
+No Article Till Now , Create a New Article
+<br><br>
+
+{% endif %}
+
+
+
+<a href="{% url 'blogs:create_pic' %}">Create Article</a> |
+<a href="{% url 'logout' %}">Logout</a> <br><br>
+<a href="{% url 'blogs:homepage'%}">Go to search page</a>
+{% else %}
+
+<a href="{% url 'login' %}">Login to create articles or seach for articles</a> |
+<a href="{% url 'signup:signup'%}">Register if a new user</a>
+
+
+{% endif %}
+<br><br>
+
+<br><br><br>
+</body>
+</html>

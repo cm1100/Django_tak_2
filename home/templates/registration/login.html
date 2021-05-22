@@ -1,0 +1,28 @@
+
+{% load crispy_forms_tags %}
+
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+{% if not user.is_authenticated %}
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+{{ form|crispy}}<br><br>
+<input type="submit" class="btn btn-success" value="Login" />
+<input type="hidden" name="next" value="{% url 'blogs:after'  %}" />
+<input type="submit" class="btn btn-primary" value="Register" onclick="window.location='{% url 'signup:signup' %}' ; return false;">
+</form>
+
+{% else %}
+<p>Already Logged in
+  <form method="get">
+  <input type="submit" class="btn btn-primary" value="Homepage" onclick="window.location='{% url 'blogs:after' %}' ; return false;">
+</form>
+</p>
+{% endif %}
+<br>
+<a href="{% url 'blogs:after'  %}">Go to homepage</a><br><br>
+<a href="{% url 'blogs:homepage' %}">Go to search page</a>
+
+
